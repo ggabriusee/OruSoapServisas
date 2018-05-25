@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="com/locations"
+           targetNamespace="com/locations" elementFormDefault="qualified">
+
+    <xs:element name="getWeatherRequest">
+        <xs:complexType>
+                <xs:sequence>
+                        <xs:element name="id" type="xs:int"/>
+                </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+ 
+    <xs:element name="getWeatherResponse">
+            <xs:complexType>
+                    <xs:sequence>
+                            <xs:element name="Weather" type="tns:Weather"/>
+                    </xs:sequence>
+            </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="getAllWeatherRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllWeatherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Weather" maxOccurs="unbounded" type="tns:Weather"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="createWeatherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="temperature" type="xs:int"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="date" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createWeatherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Weather" type="tns:Weather"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="updateWeatherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+                <xs:element name="temperature" type="xs:int"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="date" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="updateWeatherResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Weather" type="tns:Weather"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="deleteWeatherRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteWeatherResponse">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+    
+      <xs:complexType name="Weather">
+        <xs:sequence>
+          <xs:element name="id" type="xs:int"/>
+          <xs:element name="temperature" type="xs:int"/>
+          <xs:element name="city" type="xs:string"/>
+          <xs:element name="date" type="xs:string"/>
+          <xs:element name="footballTeams" type="tns:footballTeams"/>
+        </xs:sequence>
+      </xs:complexType>
+    
+
+
+              <xs:complexType name="footballTeams">
+                <xs:sequence>
+                    <xs:element name="Attendance" type="xs:string"/>
+                    <xs:element name="Captain" type="xs:string"/>
+                    <xs:element name="Country" type="xs:string"/>
+                    <xs:element name="ID" type="xs:int"/>
+                    <xs:element name="Name" type="xs:string"/>
+                    <xs:element name="Stadium" type="xs:string"/>
+                </xs:sequence>
+              </xs:complexType>
+          
+
+</xs:schema>

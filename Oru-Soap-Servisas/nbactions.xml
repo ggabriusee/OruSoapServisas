@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:1.2.1:java</goal>
+            </goals>
+            <properties>
+                <exec.mainClass>soap.servisas.OruSoapServisas.OruSoapServisasApplication</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.classpath>%classpath</exec.classpath>
+                <exec.args>-classpath %classpath ${packageClassName}</exec.args>
+            </properties>
+        </action>
+    </actions>

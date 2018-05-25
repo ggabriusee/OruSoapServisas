@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  kitas:
+    build: Web_Servisai-master/
+    command: python app.py
+    ports:
+      - "82:5000"
+    volumes:
+      - ./Web_Servisai-master/:/code
+
+  mano:
+    build: Oru-Soap-Servisas/
+    ports:
+      - "5000:5000"
+    links:
+      - kitas

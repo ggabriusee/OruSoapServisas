@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:us="com/locations">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <us:getgetWeatherRequest>
+            <us:id>1</us:id>
+        </us:getgetWeatherRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

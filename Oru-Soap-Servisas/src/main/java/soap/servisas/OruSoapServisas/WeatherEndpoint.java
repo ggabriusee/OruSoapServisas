@@ -40,6 +40,8 @@ import javax.xml.soap.SOAPException;
 import java.util.Map;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.context.annotation.Bean;
+import soap.servisas.OruSoapServisas.Exceptions.ResourceConflict409;
+import soap.servisas.OruSoapServisas.Exceptions.ResourceNotFoundException404;
 
 /**
  *
@@ -52,7 +54,7 @@ public class WeatherEndpoint {
     private WeatherService wtService;
     //private PostService postService = new PostService();
     private final String URL_NP = "com/locations";
-   //private RestTemplate restTemplate = new RestTemplate();
+   private RestTemplate restTemplate = new RestTemplate();
    
    
     private final String KITAS_URL= "http://kitas:5000/football_teams";
@@ -65,7 +67,7 @@ public class WeatherEndpoint {
         return response;
     }
     
-    @PayloadRoot(namespace = URL_NP, localPart = "getAllDoctorRequest")
+    @PayloadRoot(namespace = URL_NP, localPart = "getAllWeatherRequest")
     @ResponsePayload
     public GetAllWeatherResponse getAllWeatherResponse(@RequestPayload GetAllWeatherRequest request){
        GetAllWeatherResponse response = new GetAllWeatherResponse();
@@ -80,8 +82,8 @@ public class WeatherEndpoint {
     public DeleteWeatherResponse deleteWeatherResponse(@RequestPayload DeleteWeatherRequest request){
         DeleteWeatherResponse response = new DeleteWeatherResponse();
         Weather wee = wtService.getWeather(request.getId());
-        if(wee == null){}
-            //throw new ResourceNotFoundException404("Doctor","id",request.getId());
+        if(wee == null)
+            throw new ResourceNotFoundException404("Weather","id",request.getId());
         else
             wtService.deleteWeather(request.getId());
         return response;
@@ -100,7 +102,7 @@ public class WeatherEndpoint {
         newWeather.setCity(request.getCity());
         newWeather.setDate(request.getDate());
         /*External service part*/
-        /*
+        
         FootballTeams ft = new FootballTeams("99354", "Andres Iniesta", "Italy", 1, "FC Barcelona", "Camp Nou" );
         HttpEntity<FootballTeams> newRequest = new HttpEntity<>(ft);
         try {
@@ -117,17 +119,15 @@ public class WeatherEndpoint {
                 throw new SoapHeaderException("Internal Error");
             }
         }
-*/
-        return response;
     }
 
-    @PayloadRoot(namespace = URL_NP, localPart = "updateDoctorRequest")
+    @PayloadRoot(namespace = URL_NP, localPart = "updateWeatherRequest")
     @ResponsePayload
     public UpdateWeatherResponse updateWeatherResponse(@RequestPayload UpdateWeatherRequest request){
         UpdateWeatherResponse response = new UpdateWeatherResponse();
         Weather wee = wtService.getWeather(request.getId());
-        if(wee == null){}
-            //throw new ResourceNotFoundException404("Doctor","id",request.getId());
+        if(wee == null)
+            throw new ResourceNotFoundException404("Weather","id",request.getId());
         else {
             wtService.updateWeather(new Weather(request.getId(),
                     request.getTemperature(),

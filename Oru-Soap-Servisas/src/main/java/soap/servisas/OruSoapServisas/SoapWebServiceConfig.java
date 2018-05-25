@@ -43,7 +43,7 @@ public class SoapWebServiceConfig extends WsConfigurerAdapter{
         return new SimpleXsdSchema(new ClassPathResource("weather.xsd"));
     }
 
-    @Bean(name = "location")
+    @Bean(name = "weather")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema weatherSchema) {
         DefaultWsdl11Definition definition = new DefaultWsdl11Definition();
         definition.setSchema(weatherSchema);

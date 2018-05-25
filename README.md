@@ -1,3 +1,9 @@
+Paleidimas:
+
+docker-compose build
+docker-compose up -d
+
+
 wsdl pasiekiamas: http://localhost:5000/locations/weather.wsdl
 
 SOAP užklausų pavyzdžiai:
